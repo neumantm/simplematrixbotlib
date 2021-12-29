@@ -60,6 +60,12 @@ class Creds:
         self.device_name = "Bot Client using Simple-Matrix-Bot-Lib"
         self.device_id = ""
 
+        if not self.homeserver:
+            raise ValueError("homeserver required")
+        
+        if not self.username:
+            raise ValueError("username required")
+
         if self.password:
             self._key = fw.key_from_pass(self.password)
         elif self.login_token:
